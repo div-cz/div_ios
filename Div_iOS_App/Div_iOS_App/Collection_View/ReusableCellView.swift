@@ -8,15 +8,40 @@
 import SwiftUI
 
 struct ReusableCellView: View {
+var movieName: String = "Ja Padouch 4"
+    var movieYear: Int = 2024
+    var movieDescription: String = "Detský animovaný film"
+    var movieImage: Image = Image(.mockFilm)
     var body: some View {
-        Text("Testing UI Cell")
-        Circle()
-            .stroke(.black, lineWidth: 10)
-            .fill(.red)
-            .frame(height: 100)
+        
+        HStack {
+        movieImage
+                  .resizable()
+                  .scaledToFit()
+                  .frame(width: 100, height: 100)
+                  .padding()
+              VStack(alignment: .leading) {
+                  HStack {
+                      Text(movieName)
+                          .bold()
+                      Spacer()
+                      Text(String(movieYear))
+                  }
+                  Text(movieDescription)
+                      .lineLimit(3)
+              }
+              .padding()
+          }
+          .frame(maxWidth: .infinity, maxHeight: .infinity)
+          .background(Color.white)
+          .cornerRadius(10)
+          .shadow(radius: 5)
+        
     }
 }
 
 #Preview {
     ReusableCellView()
+        .previewLayout(.sizeThatFits)
 }
+
