@@ -32,7 +32,12 @@ struct RectangleCardView: View {
                     )
             }
             .padding()
+            .background(Color.white)
+            .cornerRadius(10)
+            .shadow(radius: 5)
+            .frame(width: geometry.size.width * cardDisplay.properties.widthRatio, height: geometry.size.width * cardDisplay.properties.heightRatio)
         }
+
         .aspectRatio(1, contentMode: .fit)
     }
 }
