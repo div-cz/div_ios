@@ -13,6 +13,9 @@
 		445FD8622C4FA9BD0035E3DD /* MovieEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445FD8612C4FA9BD0035E3DD /* MovieEndpoint.swift */; };
 		445FD8642C4FB3000035E3DD /* Movies+MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445FD8632C4FB3000035E3DD /* Movies+MockData.swift */; };
 		445FD8662C4FB32A0035E3DD /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445FD8652C4FB32A0035E3DD /* MovieDetail.swift */; };
+		445FD86B2C4FDD720035E3DD /* RectangleCardProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445FD86A2C4FDD720035E3DD /* RectangleCardProperties.swift */; };
+		445FD86D2C4FDD9F0035E3DD /* CardDisplayType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445FD86C2C4FDD9F0035E3DD /* CardDisplayType.swift */; };
+		445FD86F2C4FDDD10035E3DD /* CardTextPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445FD86E2C4FDDD10035E3DD /* CardTextPosition.swift */; };
 		AA6908652C4EF4CC007182CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6908642C4EF4CC007182CD /* AppDelegate.swift */; };
 		AA6908672C4EF4CC007182CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6908662C4EF4CC007182CD /* SceneDelegate.swift */; };
 		AA6908692C4EF4CC007182CD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6908682C4EF4CC007182CD /* ViewController.swift */; };
@@ -31,6 +34,9 @@
 		445FD8612C4FA9BD0035E3DD /* MovieEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEndpoint.swift; sourceTree = "<group>"; };
 		445FD8632C4FB3000035E3DD /* Movies+MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movies+MockData.swift"; sourceTree = "<group>"; };
 		445FD8652C4FB32A0035E3DD /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
+		445FD86A2C4FDD720035E3DD /* RectangleCardProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleCardProperties.swift; sourceTree = "<group>"; };
+		445FD86C2C4FDD9F0035E3DD /* CardDisplayType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDisplayType.swift; sourceTree = "<group>"; };
+		445FD86E2C4FDDD10035E3DD /* CardTextPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTextPosition.swift; sourceTree = "<group>"; };
 		AA6908612C4EF4CC007182CD /* Div_iOS_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Div_iOS_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA6908642C4EF4CC007182CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA6908662C4EF4CC007182CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +64,7 @@
 		445FD8532C4FA30E0035E3DD /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				445FD8692C4FDD5E0035E3DD /* DesignSystem */,
 				445FD8542C4FA31D0035E3DD /* SwiftUI */,
 			);
 			path = Components;
@@ -96,6 +103,16 @@
 				445FD8612C4FA9BD0035E3DD /* MovieEndpoint.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		445FD8692C4FDD5E0035E3DD /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				445FD86A2C4FDD720035E3DD /* RectangleCardProperties.swift */,
+				445FD86C2C4FDD9F0035E3DD /* CardDisplayType.swift */,
+				445FD86E2C4FDDD10035E3DD /* CardTextPosition.swift */,
+			);
+			path = DesignSystem;
 			sourceTree = "<group>";
 		};
 		AA6908582C4EF4CC007182CD = {
@@ -214,11 +231,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				445FD86B2C4FDD720035E3DD /* RectangleCardProperties.swift in Sources */,
 				AA69087E2C4EF5C3007182CD /* ReusableCellView.swift in Sources */,
 				AA6908692C4EF4CC007182CD /* ViewController.swift in Sources */,
 				445FD85F2C4FA8C60035E3DD /* Model+Protocol.swift in Sources */,
 				445FD8662C4FB32A0035E3DD /* MovieDetail.swift in Sources */,
 				445FD8562C4FA3490035E3DD /* RectangleCardView.swift in Sources */,
+				445FD86D2C4FDD9F0035E3DD /* CardDisplayType.swift in Sources */,
+				445FD86F2C4FDDD10035E3DD /* CardTextPosition.swift in Sources */,
 				AA6908652C4EF4CC007182CD /* AppDelegate.swift in Sources */,
 				AA69087A2C4EF563007182CD /* FilmsCollectionView.swift in Sources */,
 				AA6908672C4EF4CC007182CD /* SceneDelegate.swift in Sources */,

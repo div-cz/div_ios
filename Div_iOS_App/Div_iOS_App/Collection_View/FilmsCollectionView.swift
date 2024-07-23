@@ -51,7 +51,7 @@ class FilmsCollectionView: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         cell.contentConfiguration = UIHostingConfiguration(content: {
             ReusableCellView()
-          
+
         })
         return cell
     }
