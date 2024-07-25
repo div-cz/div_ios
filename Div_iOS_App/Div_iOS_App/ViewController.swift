@@ -8,8 +8,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black
@@ -22,14 +20,10 @@ class ViewController: UIViewController {
         welcomeImage()
         
     }
-    
-    
-
-
 }
 
 extension ViewController {
-    
+
     func welcomeImage() {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "welcomeImage")
@@ -42,14 +36,12 @@ extension ViewController {
             imageView.widthAnchor.constraint(equalToConstant: 300),
             imageView.heightAnchor.constraint(equalToConstant: 300)
         ])
-        
-        
-        
+
         NSLayoutConstraint.activate([
             
         ])
     }
-    
+
     func setupLoginButton() {
         let button = UIButton(type: .system)
         self.view.addSubview(button)
@@ -68,7 +60,6 @@ extension ViewController {
             button.widthAnchor.constraint(equalToConstant: 200),
             button.heightAnchor.constraint(equalToConstant: 50)
         ])
-
     }
     
     func setupRegisterButton() {
@@ -90,7 +81,6 @@ extension ViewController {
             button.widthAnchor.constraint(equalToConstant: 200),
             button.heightAnchor.constraint(equalToConstant: 50)
         ])
-
     }
     
     func setupMailField() {

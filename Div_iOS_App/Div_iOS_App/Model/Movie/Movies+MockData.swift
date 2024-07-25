@@ -238,6 +238,20 @@ extension Movies {
                     ],
                     imgPoster: "/qqrBr0uQ6oa5K23WZgySBgFbj8l.jpg"
                 )
+            ),
+            Movie(
+                id: 11,
+                title: "Letopisy Narnie: Lev, Čarodějnice a skříň",
+                releaseYear: "2007",
+                popularity: 102.5,
+                detail: MovieDetail(
+                    id: 11,
+                    title: "Letopisy Narnie: Lev, Čarodějnice a skříň",
+                    releaseYear: "2007",
+                    popularity: 102.5,
+                    genres: ["Rodinný", "Fantasy"],
+                    imgPoster: "/sPvBdPfyZTHcoPUCxAJCidQiLyB.jpg"
+                )
             )
         ]
     )
