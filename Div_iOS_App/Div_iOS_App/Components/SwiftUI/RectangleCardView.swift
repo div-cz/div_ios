@@ -27,17 +27,13 @@ struct RectangleCardView: View {
                     .font(.footnote)
                     .frame(
                         width: geometry.size.width * cardDisplay.properties.widthRatio,
-                        height: geometry.size.height * 0.8,
+                        height: geometry.size.height / 2,
                         alignment: .topLeading
                     )
             }
+            .border(Color.black, width: 1)
             .padding()
-            .background(Color.white)
-            .cornerRadius(10)
-            .shadow(radius: 5)
-            .frame(width: geometry.size.width * cardDisplay.properties.widthRatio, height: geometry.size.width * cardDisplay.properties.heightRatio)
         }
-
         .aspectRatio(1, contentMode: .fit)
     }
 }
@@ -54,14 +50,10 @@ extension RectangleCardView {
                         image
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                           // .clipped()
                     case .failure:
                         Image(systemName: "photo")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-
-                            //.clipped()
-
                     @unknown default:
                         EmptyView()
                     }
@@ -70,8 +62,6 @@ extension RectangleCardView {
                 Image(systemName: "photo")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-
-                    //.clipped()
             }
         }
     }
@@ -86,9 +76,9 @@ extension RectangleCardView {
             RectangleCardView(title: movieOne.title, imageUrl: movieOne.detail.imgPosterURL)
             RectangleCardView(title: movieTwo.title, imageUrl: movieTwo.detail.imgPosterURL)
             RectangleCardView(title: movieOne.title, imageUrl: movieOne.detail.imgPosterURL)
-            RectangleCardView(title: movieTwo.title, imageUrl: movieTwo.detail.imgPosterURL)
-            RectangleCardView(title: movieOne.title, imageUrl: movieOne.detail.imgPosterURL)
-            RectangleCardView(title: movieTwo.title, imageUrl: movieTwo.detail.imgPosterURL)
+//            RectangleCardView(title: movieTwo.title, imageUrl: movieTwo.detail.imgPosterURL)
+//            RectangleCardView(title: movieOne.title, imageUrl: movieOne.detail.imgPosterURL)
+//            RectangleCardView(title: movieTwo.title, imageUrl: movieTwo.detail.imgPosterURL)
         }
     }
     .padding(.horizontal)
