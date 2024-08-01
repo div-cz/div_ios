@@ -58,9 +58,7 @@ class FilmsCollectionView: UICollectionViewController {
                 title: movieOne.title,
                 imageUrl: movieOne.detail.imgPosterURL,
                 genre: movieOne.detail.genres,
-                popularity: movieOne.popularity,
-                height: heightPerItem,
-                width: widthPerItem
+                popularity: movieOne.popularity
             )
             .padding()
         }
