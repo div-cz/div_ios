@@ -16,10 +16,9 @@ class FilmsCollectionView: UICollectionViewController {
     let movieOne = Movies.mock.movies[0]
 
     init() {
-        layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
-        layout.scrollDirection = .vertical
+        layout.scrollDirection = .horizontal
         super.init(collectionViewLayout: layout)
         Logger().info("Collection view has been initalized")
     }
@@ -42,29 +41,28 @@ class FilmsCollectionView: UICollectionViewController {
         return 2
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 27
+        return 20
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-// Získání velikosti buňky
+        // Získání velikosti buňky
         let widthPerItem: CGFloat = 130
         let heightPerItem: CGFloat = 300
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         cell.contentConfiguration = UIHostingConfiguration(content: {
-                RectangleCardView(
-                    cardDisplay: .classic,
-                    title: movieOne.title,
-                    imageUrl: movieOne.detail.imgPosterURL,
-                    genre: movieOne.detail.genres,
-                    popularity: movieOne.popularity,
-                    height: heightPerItem,
-                    width: widthPerItem
-                )
-                .padding()
+            RectangleCardView(
+                cardDisplay: .classic,
+                title: movieOne.title,
+                imageUrl: movieOne.detail.imgPosterURL,
+                genre: movieOne.detail.genres,
+                popularity: movieOne.popularity,
+                height: heightPerItem,
+                width: widthPerItem
+            )
+            .padding()
         }
         )
         return cell
@@ -72,13 +70,15 @@ class FilmsCollectionView: UICollectionViewController {
 }
 
 extension FilmsCollectionView: UICollectionViewDelegateFlowLayout {
-// Rozměry buněk
+    // Rozměry buněk
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemsPerRow: CGFloat = 3
-        let paddingSpace = layout.minimumInteritemSpacing * itemsPerRow
-        let availableWidth = collectionView.bounds.width - (paddingSpace + layout.sectionInset.left + layout.sectionInset.right)
-        let widthPerItem = availableWidth / itemsPerRow
-        return CGSize(width: widthPerItem, height: widthPerItem)
+        // Velikost karty RectangleCardView
+        return CGSize(width: 130, height: 300)
+        //        let itemsPerRow: CGFloat = 3
+        //        let paddingSpace = layout.minimumInteritemSpacing * itemsPerRow
+        //        let availableWidth = collectionView.bounds.width - (paddingSpace + layout.sectionInset.left + layout.sectionInset.right)
+        //        let widthPerItem = availableWidth / itemsPerRow
+        //        return CGSize(width: widthPerItem, height: widthPerItem)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -87,11 +87,11 @@ extension FilmsCollectionView: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         // Nastavenie minimálnej vzdialenosti medzi riadkami
-        return 10
+        return 20
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        // Nastavenie minimálnej vzdialenosti medzi položkami
+        // Nastavenie minimálnej vzdialenosti medzi položkami (sloupci)
         return 10
     }
 }
