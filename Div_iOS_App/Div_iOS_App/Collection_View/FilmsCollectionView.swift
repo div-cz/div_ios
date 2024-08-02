@@ -18,7 +18,7 @@ class FilmsCollectionView: UICollectionViewController {
     init() {
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         super.init(collectionViewLayout: layout)
         Logger().info("Collection view has been initalized")
     }
@@ -67,15 +67,9 @@ class FilmsCollectionView: UICollectionViewController {
 }
 
 extension FilmsCollectionView: UICollectionViewDelegateFlowLayout {
-    // Rozměry buněk
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // Velikost karty RectangleCardView
         return CGSize(width: 230, height: 300)
-        //        let itemsPerRow: CGFloat = 3
-        //        let paddingSpace = layout.minimumInteritemSpacing * itemsPerRow
-        //        let availableWidth = collectionView.bounds.width - (paddingSpace + layout.sectionInset.left + layout.sectionInset.right)
-        //        let widthPerItem = availableWidth / itemsPerRow
-        //        return CGSize(width: widthPerItem, height: widthPerItem)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -84,11 +78,11 @@ extension FilmsCollectionView: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         // Nastavenie minimálnej vzdialenosti medzi riadkami
-        return 20
+        return 5
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         // Nastavenie minimálnej vzdialenosti medzi položkami (sloupci)
-        return 10
+        return 5
     }
 }
