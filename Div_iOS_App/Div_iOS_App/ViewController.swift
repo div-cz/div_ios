@@ -8,11 +8,15 @@
 import UIKit
 
 class ViewController: UIViewController {
+    let imageView = UIImageView(frame: UIScreen.main.bounds)
+    let button = UIButton(type: .system)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black
         
         // Do any additional setup after loading the view.
+        
         setupLoginButton()
         setupRegisterButton()
         setupMailField()
@@ -24,26 +28,38 @@ class ViewController: UIViewController {
 
 extension ViewController {
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: { _ in
+            self.view.setNeedsLayout()
+        }, completion: nil)
+        
+    }
+
+    
     func welcomeImage() {
-        let imageView = UIImageView()
         imageView.image = UIImage(named: "welcomeImage")
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(imageView)
-        NSLayoutConstraint.activate([
-            imageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            imageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100),
-            imageView.widthAnchor.constraint(equalToConstant: 300),
-            imageView.heightAnchor.constraint(equalToConstant: 300)
-        ])
+        
+        if self.view.bounds.width > self.view.bounds.height {
+            NSLayoutConstraint.activate([
+                imageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                imageView.heightAnchor.constraint(equalToConstant: 40)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                imageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                imageView.heightAnchor.constraint(equalToConstant: 40),
+            ])
+        }
+        
 
-        NSLayoutConstraint.activate([
-            
-        ])
     }
 
     func setupLoginButton() {
-        let button = UIButton(type: .system)
         self.view.addSubview(button)
         button.setTitle("Login", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -63,7 +79,6 @@ extension ViewController {
     }
     
     func setupRegisterButton() {
-        let button = UIButton(type: .system)
         self.view.addSubview(button)
         button.setTitle("Register", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -74,10 +89,8 @@ extension ViewController {
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            // Pripojenie tlačidla k stredu zobrazenia
             button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor,constant: 0),
             button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 200),
-            // Nastavenie šírky a výšky tlačidla
             button.widthAnchor.constraint(equalToConstant: 200),
             button.heightAnchor.constraint(equalToConstant: 50)
         ])
@@ -118,6 +131,7 @@ extension ViewController {
     @objc func buttonTapped() {
             print("Tlačidlo bolo stlačené!")
         }
+    
     @objc func showFilmsCollection() {
         let filmsCollectionVC = FilmsCollectionView()
         filmsCollectionVC.modalPresentationStyle = .fullScreen
