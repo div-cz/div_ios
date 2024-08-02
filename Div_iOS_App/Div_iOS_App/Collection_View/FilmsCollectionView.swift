@@ -50,14 +50,16 @@ class FilmsCollectionView: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         cell.contentConfiguration = UIHostingConfiguration(content: {
             RectangleCardView(
-                cardDisplay: .classic,
+                cardDisplay: .wide,
+                cardTextPosition: .under,
                 title: movieOne.title,
                 imageUrl: movieOne.detail.imgPosterURL,
                 genre: movieOne.detail.genres,
                 popularity: movieOne.popularity,
-                releaseYear: movieOne.releaseYear
+                releaseYear: movieOne.releaseYear,
+                description: movieOne.detail.description
             )
-            .padding()
+             .padding(.trailing, 70)
         }
         )
         return cell
@@ -68,7 +70,7 @@ extension FilmsCollectionView: UICollectionViewDelegateFlowLayout {
     // Rozměry buněk
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // Velikost karty RectangleCardView
-        return CGSize(width: 230, height: 400)
+        return CGSize(width: 230, height: 300)
         //        let itemsPerRow: CGFloat = 3
         //        let paddingSpace = layout.minimumInteritemSpacing * itemsPerRow
         //        let availableWidth = collectionView.bounds.width - (paddingSpace + layout.sectionInset.left + layout.sectionInset.right)

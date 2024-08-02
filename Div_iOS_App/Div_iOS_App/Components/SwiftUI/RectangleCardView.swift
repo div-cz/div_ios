@@ -9,40 +9,75 @@ import SwiftUI
 
 struct RectangleCardView: View {
     var cardDisplay: CardDisplayType = .classic
+    var cardTextPosition: CardTextPosition = .under
     var title: String
     var imageUrl: String?
     var genre: [String]?
     var popularity: Double?
     var releaseYear: String?
+    var description: String?
 
     var body: some View {
         GeometryReader { geometry in
-            VStack(alignment: .leading, spacing: 5) {
-                imageView
+            switch cardTextPosition {
+            // MARK: - TEXT UNDER
+            case .under:
+                VStack(alignment: .leading, spacing: 5) {
+                    imageView
+                        .frame(
+                            width: geometry.size.width * cardDisplay.properties.widthRatio,
+                            height: geometry.size.height * cardDisplay.properties.heightRatio
+                        )
+                        .background(Color.gray.opacity(0.2))
+                        .cornerRadius(geometry.size.width * RectangleCardProperties.cornerRadiusRatio)
+
+                    VStack(alignment: .leading) {
+                        itemTitle
+                        itemRating
+                    }
+                    .font(.system(size: geometry.size.width * 0.07))
+                    .padding(.horizontal, 5)
                     .frame(
                         width: geometry.size.width * cardDisplay.properties.widthRatio,
-                        height: geometry.size.height * cardDisplay.properties.heightRatio
+                        height: geometry.size.height / 2.6,
+                        alignment: .topLeading
                     )
-                    .background(Color.gray.opacity(0.2))
-                    .cornerRadius(geometry.size.width * RectangleCardProperties.cornerRadiusRatio)
-
-                VStack(alignment: .leading) {
-                    itemTitle
-                    itemRating
                 }
-                .font(.system(size: geometry.size.width * 0.07))
-                .padding(.horizontal, 5)
+                .padding()
                 .frame(
                     width: geometry.size.width * cardDisplay.properties.widthRatio,
-                    height: geometry.size.height / 2.6,
-                    alignment: .topLeading
+                    height: geometry.size.height * cardDisplay.properties.heightRatio * 1.5
+                )
+            // MARK: - TEXT RIGHTSIDE
+            case .rightside:
+                HStack(alignment: .top, spacing: 5) {
+                    imageView
+                        .frame(
+                            width: geometry.size.width * cardDisplay.properties.widthRatio,
+                            height: geometry.size.height * cardDisplay.properties.heightRatio
+                        )
+                        .background(Color.gray.opacity(0.2))
+                        .cornerRadius(geometry.size.width * RectangleCardProperties.cornerRadiusRatio)
+
+                    VStack(alignment: .leading) {
+                        itemTitle
+                        itemRating
+                        itemDescription
+                    }
+                    .font(.system(size: geometry.size.width * 0.07))
+                    .padding([.trailing, .top], 10)
+                    .frame(
+                        width: geometry.size.width * cardDisplay.properties.widthRatio,
+                        height: geometry.size.height * cardDisplay.properties.heightRatio,
+                        alignment: .topLeading
+                    )
+                }
+                .frame(
+                    width: geometry.size.width * cardDisplay.properties.widthRatio * 2,
+                    height: geometry.size.height * cardDisplay.properties.heightRatio
                 )
             }
-            .padding()
-            .frame(
-                width: geometry.size.width * cardDisplay.properties.widthRatio,
-                height: geometry.size.height * cardDisplay.properties.heightRatio * 1.4
-            )
+
         }
         .aspectRatio(1, contentMode: .fit)
     }
@@ -95,9 +130,30 @@ extension RectangleCardView {
             }
         }
     }
+
+    private var itemDescription: some View {
+        Text(description ?? "")
+            .padding(.top)
+    }
 }
 
-#Preview("More Cards") {
+#Preview("Text - right side") {
+    let movieOne = Movies.mock.movies[0]
+
+    return RectangleCardView(
+        cardDisplay: .classic,
+        cardTextPosition: .rightside,
+        title: movieOne.title,
+        imageUrl: movieOne.detail.imgPosterURL,
+        genre: movieOne.detail.genres,
+        popularity: movieOne.popularity,
+        releaseYear: movieOne.releaseYear,
+        description: movieOne.detail.description
+    )
+    .padding(.horizontal, 130)
+}
+
+#Preview("Text - under") {
     let movieOne = Movies.mock.movies[0]
     let movieTwo = Movies.mock.movies[1]
     let movieThree = Movies.mock.movies[2]
@@ -105,6 +161,8 @@ extension RectangleCardView {
     return VStack {
         HStack {
             RectangleCardView(
+                cardDisplay: .classic,
+                cardTextPosition: .under,
                 title: movieOne.title,
                 imageUrl: movieOne.detail.imgPosterURL,
                 genre: movieOne.detail.genres,
@@ -112,163 +170,31 @@ extension RectangleCardView {
                 releaseYear: movieOne.releaseYear
             )
             RectangleCardView(
+                cardDisplay: .classic,
+                cardTextPosition: .under,
                 title: movieTwo.title,
                 imageUrl: movieTwo.detail.imgPosterURL,
                 genre: movieTwo.detail.genres,
                 popularity: nil,
                 releaseYear: movieTwo.releaseYear
             )
-//            RectangleCardView(
-//                title: movieThree.title,
-//                imageUrl: movieThree.detail.imgPosterURL,
-//                popularity: movieThree.popularity
-//            )
-//            RectangleCardView(
-//                title: movieOne.title,
-//                imageUrl: movieOne.detail.imgPosterURL,
-//                genre: movieOne.detail.genres,
-//                popularity: movieOne.popularity
-//            )
-//            RectangleCardView(
-//                title: movieTwo.title,
-//                imageUrl: movieTwo.detail.imgPosterURL,
-//                genre: movieTwo.detail.genres,
-//                popularity: movieTwo.popularity
-//            )
-//            RectangleCardView(
-//                title: movieThree.title,
-//                imageUrl: movieThree.detail.imgPosterURL,
-//                popularity: movieThree.popularity
-//            )
         }
     }
-    .padding(.horizontal)
+    .padding(.leading)
 }
 
+#Preview("Card - wide") {
+    let movieOne = Movies.mock.movies[0]
 
-
-//import SwiftUI
-//
-//struct RectangleCardView: View {
-//    var cardDisplay: CardDisplayType = .classic
-//    var title: String
-//    var imageUrl: String?
-//    var genre: [String]?
-//    var popularity: Double?
-//    let height: CGFloat
-//    let width: CGFloat
-//
-//    var body: some View {
-//        VStack(alignment: .leading, spacing: 10) {
-//            imageView
-//                .frame(height: (height / 3) * 2)
-//                .clipped()
-//                .cornerRadius(16)
-//
-//            VStack(alignment: .leading, spacing: 4) {
-//                Text(title)
-//                    .font(.headline)
-//                    .lineLimit(2)
-//
-//                if let popularity = popularity {
-//                    HStack {
-//                        Text("\(popularity)")
-//                        Image(systemName: "star.fill")
-//                            .foregroundColor(.yellow)
-//                    }
-//                    .font(.footnote)
-//                }
-//                Spacer()
-//            }
-//            .padding(5)
-//            .frame(height: height / 4)
-//        }
-//        // celková výška a šířka Vstacku
-//        .frame(width: width, height: height
-//        )
-//        .background(Color.black.opacity(0.1))
-//        .cornerRadius(16)
-//    }
-//}
-//
-//extension RectangleCardView {
-//    private var imageView: some View {
-//        Group {
-//            if let urlString = imageUrl, let url = URL(string: urlString) {
-//                AsyncImage(url: url) { phase in
-//                    switch phase {
-//                    case .empty:
-//                        ProgressView()
-//                    case .success(let image):
-//                        image
-//                            .resizable()
-//                            .aspectRatio(contentMode: .fill)
-//                    case .failure:
-//                        Image(systemName: "photo")
-//                            .resizable()
-//                            .scaledToFill()
-//
-//                    @unknown default:
-//                        EmptyView()
-//                    }
-//                }
-//            } else {
-//                Image(systemName: "photo")
-//                    .resizable()
-//                    .scaledToFill()
-//            }
-//        }
-//    }
-//}
-//
-//#Preview("More Cards") {
-//    let movieOne = Movies.mock.movies[0]
-//    let movieTwo = Movies.mock.movies[1]
-//    let movieThree = Movies.mock.movies[2]
-//
-//    return ScrollView(.horizontal) {
-//        HStack(spacing: 20) {
-//            RectangleCardView(
-//                title: movieOne.title,
-//                imageUrl: movieOne.detail.imgPosterURL,
-//                genre: movieOne.detail.genres,
-//                popularity: movieOne.popularity,
-//                height: 300,
-//                width: 130
-//            )
-//            RectangleCardView(
-//                title: movieTwo.title,
-//                imageUrl: movieTwo.detail.imgPosterURL,
-//                genre: movieTwo.detail.genres,
-//                popularity: movieTwo.popularity,
-//                height: 300,
-//                width: 130
-//            )
-//            RectangleCardView(
-//                title: movieThree.title,
-//                imageUrl: movieThree.detail.imgPosterURL,
-//                height: 300,
-//                width: 130
-//            )
-//            RectangleCardView(
-//                title: movieTwo.title,
-//                imageUrl: movieTwo.detail.imgPosterURL,
-//                height: 300,
-//                width: 130
-//            )
-//            RectangleCardView(
-//                title: movieOne.title,
-//                imageUrl: movieOne.detail.imgPosterURL,
-//                height: 300,
-//                width: 130
-//            )
-//            RectangleCardView(
-//                title: movieTwo.title,
-//                imageUrl: movieTwo.detail.imgPosterURL,
-//                height: 300,
-//                width: 130
-//            )
-//        }
-//    }
-//    .padding(.horizontal)
-//}
+    return RectangleCardView(
+        cardDisplay: .wide,
+        cardTextPosition: .under,
+        title: movieOne.title,
+        imageUrl: movieOne.detail.imgPosterURL,
+        genre: movieOne.detail.genres,
+        popularity: movieOne.popularity,
+        releaseYear: movieOne.releaseYear,
+        description: movieOne.detail.description
+    )
+    .padding(.horizontal, 130)
+}
