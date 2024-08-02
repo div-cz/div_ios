@@ -47,10 +47,6 @@ class FilmsCollectionView: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // Získání velikosti buňky
-        let widthPerItem: CGFloat = 130
-        let heightPerItem: CGFloat = 300
-
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         cell.contentConfiguration = UIHostingConfiguration(content: {
             RectangleCardView(
@@ -58,7 +54,8 @@ class FilmsCollectionView: UICollectionViewController {
                 title: movieOne.title,
                 imageUrl: movieOne.detail.imgPosterURL,
                 genre: movieOne.detail.genres,
-                popularity: movieOne.popularity
+                popularity: movieOne.popularity,
+                releaseYear: movieOne.releaseYear
             )
             .padding()
         }
@@ -71,7 +68,7 @@ extension FilmsCollectionView: UICollectionViewDelegateFlowLayout {
     // Rozměry buněk
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // Velikost karty RectangleCardView
-        return CGSize(width: 130, height: 300)
+        return CGSize(width: 230, height: 400)
         //        let itemsPerRow: CGFloat = 3
         //        let paddingSpace = layout.minimumInteritemSpacing * itemsPerRow
         //        let availableWidth = collectionView.bounds.width - (paddingSpace + layout.sectionInset.left + layout.sectionInset.right)

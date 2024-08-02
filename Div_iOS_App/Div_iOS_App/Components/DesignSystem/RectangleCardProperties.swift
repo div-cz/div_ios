@@ -10,5 +10,5 @@ import Foundation
 struct RectangleCardProperties {
     let widthRatio: CGFloat
     let heightRatio: CGFloat
-    static let cornerRadiusRatio: CGFloat = 0.12
+    static let cornerRadiusRatio: CGFloat = 0.11
 }

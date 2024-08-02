@@ -13,6 +13,7 @@ struct RectangleCardView: View {
     var imageUrl: String?
     var genre: [String]?
     var popularity: Double?
+    var releaseYear: String?
 
     var body: some View {
         GeometryReader { geometry in
@@ -22,46 +23,25 @@ struct RectangleCardView: View {
                         width: geometry.size.width * cardDisplay.properties.widthRatio,
                         height: geometry.size.height * cardDisplay.properties.heightRatio
                     )
+                    .background(Color.gray.opacity(0.2))
                     .cornerRadius(geometry.size.width * RectangleCardProperties.cornerRadiusRatio)
 
                 VStack(alignment: .leading) {
-                    Text(title)
-                        .lineLimit(2)
-                        .frame(
-                            width: geometry.size.width * cardDisplay.properties.widthRatio,
-                            alignment: .topLeading
-                        )
-                    //                    if let genre = genre {
-                    //                        ForEach(genre, id: \.self) { genre in
-                    //                            Text(genre)
-                    //                                .lineLimit(2)
-                    //                                .font(.footnote)
-                    //                               // .foregroundStyle(.gray)
-                    //                                .padding(.bottom, 2)
-                    //                        }
-                    //                    }
-
-                    if let popularity = popularity {
-                        HStack {
-                            Text(String(popularity))
-                            Image(systemName: "star.fill")
-                                .foregroundColor(.yellow)
-                        }
-                    }
+                    itemTitle
+                    itemRating
                 }
-                .font(.system(size: geometry.size.width * 0.1)) // Dynamická velikost písma
-                .padding(.leading, 2)
+                .font(.system(size: geometry.size.width * 0.07))
+                .padding(.horizontal, 5)
                 .frame(
                     width: geometry.size.width * cardDisplay.properties.widthRatio,
-                    height: geometry.size.height / 2,
+                    height: geometry.size.height / 2.6,
                     alignment: .topLeading
                 )
             }
-            .border(Color.black, width: 1)
             .padding()
             .frame(
                 width: geometry.size.width * cardDisplay.properties.widthRatio,
-                height: geometry.size.height * cardDisplay.properties.heightRatio
+                height: geometry.size.height * cardDisplay.properties.heightRatio * 1.4
             )
         }
         .aspectRatio(1, contentMode: .fit)
@@ -74,24 +54,44 @@ extension RectangleCardView {
             if let urlString = imageUrl, let url = URL(string: urlString) {
                 AsyncImage(url: url) { image in
                     switch image {
-                    case .empty:
-                        ProgressView()
                     case .success(let image):
                         image
                             .resizable()
-                            .aspectRatio(contentMode: .fill)
                     case .failure:
                         Image(.mockFilm)
                             .resizable()
+                    default:
+                        Image(.divLogoText)
+                            .resizable()
                             .aspectRatio(contentMode: .fit)
-                    @unknown default:
-                        EmptyView()
+                            .padding()
                     }
                 }
+            }
+        }
+    }
+
+    private var itemTitle: some View {
+        Group {
+            if let releaseYear = releaseYear, !releaseYear.isEmpty {
+                Text("\(title) (\(releaseYear))")
             } else {
-                Image(systemName: "photo")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
+                Text(title)
+            }
+        }
+        .bold()
+        .lineLimit(2)
+    }
+
+    private var itemRating: some View {
+        Group {
+            if let popularity = popularity {
+                HStack {
+                    Text(String(popularity))
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.yellow)
+                }
+                .foregroundColor(.black.opacity(0.7))
             }
         }
     }
@@ -108,36 +108,38 @@ extension RectangleCardView {
                 title: movieOne.title,
                 imageUrl: movieOne.detail.imgPosterURL,
                 genre: movieOne.detail.genres,
-                popularity: movieOne.popularity
+                popularity: movieOne.popularity,
+                releaseYear: movieOne.releaseYear
             )
             RectangleCardView(
                 title: movieTwo.title,
                 imageUrl: movieTwo.detail.imgPosterURL,
                 genre: movieTwo.detail.genres,
-                popularity: movieTwo.popularity
+                popularity: nil,
+                releaseYear: movieTwo.releaseYear
             )
-            RectangleCardView(
-                title: movieThree.title,
-                imageUrl: movieThree.detail.imgPosterURL,
-                popularity: movieThree.popularity
-            )
-            RectangleCardView(
-                title: movieOne.title,
-                imageUrl: movieOne.detail.imgPosterURL,
-                genre: movieOne.detail.genres,
-                popularity: movieOne.popularity
-            )
-            RectangleCardView(
-                title: movieTwo.title,
-                imageUrl: movieTwo.detail.imgPosterURL,
-                genre: movieTwo.detail.genres,
-                popularity: movieTwo.popularity
-            )
-            RectangleCardView(
-                title: movieThree.title,
-                imageUrl: movieThree.detail.imgPosterURL,
-                popularity: movieThree.popularity
-            )
+//            RectangleCardView(
+//                title: movieThree.title,
+//                imageUrl: movieThree.detail.imgPosterURL,
+//                popularity: movieThree.popularity
+//            )
+//            RectangleCardView(
+//                title: movieOne.title,
+//                imageUrl: movieOne.detail.imgPosterURL,
+//                genre: movieOne.detail.genres,
+//                popularity: movieOne.popularity
+//            )
+//            RectangleCardView(
+//                title: movieTwo.title,
+//                imageUrl: movieTwo.detail.imgPosterURL,
+//                genre: movieTwo.detail.genres,
+//                popularity: movieTwo.popularity
+//            )
+//            RectangleCardView(
+//                title: movieThree.title,
+//                imageUrl: movieThree.detail.imgPosterURL,
+//                popularity: movieThree.popularity
+//            )
         }
     }
     .padding(.horizontal)
