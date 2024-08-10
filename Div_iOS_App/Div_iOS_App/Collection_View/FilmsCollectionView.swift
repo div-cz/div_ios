@@ -16,6 +16,7 @@ class FilmsCollectionView: UICollectionViewController {
     let movieOne = Movies.mock.movies[0]
 
     init() {
+        layout.itemSize = CGSize(width: 200, height: 100)
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
         layout.scrollDirection = .vertical
@@ -38,7 +39,7 @@ class FilmsCollectionView: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 1
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -59,7 +60,6 @@ class FilmsCollectionView: UICollectionViewController {
                 releaseYear: movieOne.releaseYear,
                 description: movieOne.detail.description
             )
-             .padding(.trailing, 70)
         }
         )
         return cell
@@ -67,10 +67,10 @@ class FilmsCollectionView: UICollectionViewController {
 }
 
 extension FilmsCollectionView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // Velikost karty RectangleCardView
-        return CGSize(width: 230, height: 300)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        // Velikost karty RectangleCardView
+//        return CGSize(width: 500, height: 300)
+//    }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
