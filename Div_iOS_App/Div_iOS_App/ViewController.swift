@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class ViewController: UIViewController {
     let imageView = UIImageView(frame: UIScreen.main.bounds)
@@ -44,15 +45,16 @@ extension ViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(imageView)
         
-        if self.view.bounds.width > self.view.bounds.height {
+        if self.view.bounds.width > self.view.bounds.height { //telefon na sirku
             NSLayoutConstraint.activate([
                 imageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-                imageView.heightAnchor.constraint(equalToConstant: 40)
+                imageView.heightAnchor.constraint(equalToConstant: 150)
             ])
         } else {
             NSLayoutConstraint.activate([
                 imageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-                imageView.heightAnchor.constraint(equalToConstant: 40),
+                imageView.heightAnchor.constraint(equalToConstant: 200),
+                imageView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -250)
             ])
         }
         
@@ -90,8 +92,8 @@ extension ViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor,constant: 0),
-            button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 200),
-            button.widthAnchor.constraint(equalToConstant: 200),
+            button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 150),
+            button.widthAnchor.constraint(equalToConstant: 150),
             button.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
@@ -140,3 +142,6 @@ extension ViewController {
 
 }
 
+#Preview(body: {
+    ViewController()
+})
