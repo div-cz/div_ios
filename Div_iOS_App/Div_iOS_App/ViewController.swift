@@ -37,28 +37,19 @@ extension ViewController {
         }, completion: nil)
         
     }
-
     
     func welcomeImage() {
         imageView.image = UIImage(named: "welcomeImage")
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(imageView)
-        
-        if self.view.bounds.width > self.view.bounds.height { //telefon na sirku
-            NSLayoutConstraint.activate([
-                imageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-                imageView.heightAnchor.constraint(equalToConstant: 150)
-            ])
-        } else {
-            NSLayoutConstraint.activate([
-                imageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-                imageView.heightAnchor.constraint(equalToConstant: 200),
-                imageView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -250)
-            ])
-        }
-        
 
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 150),
+            imageView.heightAnchor.constraint(equalToConstant: 150),
+            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.bounds.height * 0.03)
+        ])
     }
 
     func setupLoginButton() {
