@@ -49,6 +49,7 @@ class FilmsCollectionView: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        cell.clipsToBounds = true
         cell.contentConfiguration = UIHostingConfiguration(content: {
             RectangleCardView(
                 cardDisplay: .wide,
@@ -60,6 +61,8 @@ class FilmsCollectionView: UICollectionViewController {
                 releaseYear: movieOne.releaseYear,
                 description: movieOne.detail.description
             )
+
+            
         }
         )
         return cell
@@ -86,3 +89,7 @@ extension FilmsCollectionView: UICollectionViewDelegateFlowLayout {
         return 5
     }
 }
+
+#Preview(body: {
+    FilmsCollectionView()
+})
