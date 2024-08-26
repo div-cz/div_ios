@@ -16,9 +16,9 @@ class FilmsCollectionView: UICollectionViewController {
     let movieOne = Movies.mock.movies[0]
 
     init() {
-        layout.itemSize = CGSize(width: 200, height: 100)
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 10
+        layout.itemSize = CGSize(width: 150, height: 150)
+//        layout.minimumLineSpacing = 5
+//        layout.minimumInteritemSpacing = 5
         layout.scrollDirection = .vertical
         super.init(collectionViewLayout: layout)
         Logger().info("Collection view has been initalized")
@@ -49,7 +49,7 @@ class FilmsCollectionView: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        cell.clipsToBounds = true
+//        cell.clipsToBounds = true
         cell.contentConfiguration = UIHostingConfiguration(content: {
             RectangleCardView(
                 cardDisplay: .wide,
@@ -70,13 +70,10 @@ class FilmsCollectionView: UICollectionViewController {
 }
 
 extension FilmsCollectionView: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        // Velikost karty RectangleCardView
-//        return CGSize(width: 500, height: 300)
-//    }
+
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        return UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
