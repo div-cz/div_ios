@@ -93,8 +93,12 @@ extension RectangleCardView {
                         image
                             .resizable()
                     case .failure:
-                        Image(.mockFilm)
+                        Image(.divLogoText)
                             .resizable()
+                    case .empty:
+                        Image(.divLogoText)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
                     default:
                         Image(.divLogoText)
                             .resizable()
