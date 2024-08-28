@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct RectangleCardView: View {
     var cardDisplay: CardDisplayType = .classic
     var cardTextPosition: CardTextPosition = .under
@@ -16,70 +17,67 @@ struct RectangleCardView: View {
     var popularity: Double?
     var releaseYear: String?
     var description: String?
+    var width: CGFloat
+    var height: CGFloat
 
     var body: some View {
-        GeometryReader { geometry in
             switch cardTextPosition {
             // MARK: - TEXT UNDER
             case .under:
                 VStack(alignment: .leading, spacing: 5) {
                     imageView
                         .frame(
-                            width: geometry.size.width * cardDisplay.properties.widthRatio,
-                            height: geometry.size.height * cardDisplay.properties.heightRatio
+                            width: width,
+                            height: height
                         )
                         .background(Color.gray.opacity(0.2))
-                        .cornerRadius(geometry.size.width * RectangleCardProperties.cornerRadiusRatio)
+                        .cornerRadius(16)
 
                     VStack(alignment: .leading) {
                         itemTitle
                         itemRating
                     }
-                    .font(.system(size: geometry.size.width * 0.07))
                     .padding(.horizontal, 5)
                     .frame(
-                        width: geometry.size.width * cardDisplay.properties.widthRatio,
-                        height: geometry.size.height / 2.6,
+                        width: width,
+                        height: height,
                         alignment: .topLeading
                     )
                 }
                 .padding()
                 .frame(
-                    width: geometry.size.width * cardDisplay.properties.widthRatio,
-                    height: geometry.size.height * cardDisplay.properties.heightRatio * 1.5
+                    width: width,
+                    height: height
                 )
             // MARK: - TEXT RIGHTSIDE
             case .rightside:
                 HStack(alignment: .top, spacing: 5) {
                     imageView
                         .frame(
-                            width: geometry.size.width * cardDisplay.properties.widthRatio,
-                            height: geometry.size.height * cardDisplay.properties.heightRatio
+                            width: width,
+                            height: height
                         )
                         .background(Color.gray.opacity(0.2))
-                        .cornerRadius(geometry.size.width * RectangleCardProperties.cornerRadiusRatio)
+                        .cornerRadius(16)
 
                     VStack(alignment: .leading) {
                         itemTitle
                         itemRating
                         itemDescription
                     }
-                    .font(.system(size: geometry.size.width * 0.07))
                     .padding([.trailing, .top], 10)
                     .frame(
-                        width: geometry.size.width * cardDisplay.properties.widthRatio,
-                        height: geometry.size.height * cardDisplay.properties.heightRatio,
+                        width: width,
+                        height: height,
                         alignment: .topLeading
                     )
                 }
                 .frame(
-                    width: geometry.size.width * cardDisplay.properties.widthRatio * 2,
-                    height: geometry.size.height * cardDisplay.properties.heightRatio
+                    width: width,
+                    height: height
                 )
+                .padding()
             }
-
-        }
-        .aspectRatio(1, contentMode: .fit)
     }
 }
 
@@ -93,14 +91,10 @@ extension RectangleCardView {
                         image
                             .resizable()
                     case .failure:
-                        Image(.divLogoText)
+                        Image(systemName: "photo")
                             .resizable()
-                    case .empty:
-                        Image(.divLogoText)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
                     default:
-                        Image(.divLogoText)
+                        Image(systemName: "photo")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .padding()
@@ -119,6 +113,7 @@ extension RectangleCardView {
             }
         }
         .bold()
+        .minimumScaleFactor(0.5)
         .lineLimit(2)
     }
 
@@ -133,11 +128,14 @@ extension RectangleCardView {
                 .foregroundColor(.black.opacity(0.7))
             }
         }
+        .font(.footnote)
+        .minimumScaleFactor(0.5)
     }
 
     private var itemDescription: some View {
         Text(description ?? "")
-            .padding(.top)
+            .padding(.top, 1)
+            .minimumScaleFactor(0.5)
     }
 }
 
@@ -152,7 +150,9 @@ extension RectangleCardView {
         genre: movieOne.detail.genres,
         popularity: movieOne.popularity,
         releaseYear: movieOne.releaseYear,
-        description: movieOne.detail.description
+        description: movieOne.detail.description,
+        width: 150,
+        height: 300
     )
     .padding(.horizontal, 130)
 }
@@ -171,7 +171,9 @@ extension RectangleCardView {
                 imageUrl: movieOne.detail.imgPosterURL,
                 genre: movieOne.detail.genres,
                 popularity: movieOne.popularity,
-                releaseYear: movieOne.releaseYear
+                releaseYear: movieOne.releaseYear,
+                width: 150,
+                height: 300
             )
             RectangleCardView(
                 cardDisplay: .classic,
@@ -180,7 +182,9 @@ extension RectangleCardView {
                 imageUrl: movieTwo.detail.imgPosterURL,
                 genre: movieTwo.detail.genres,
                 popularity: nil,
-                releaseYear: movieTwo.releaseYear
+                releaseYear: movieTwo.releaseYear,
+                width: 150,
+                height: 300
             )
         }
     }
@@ -198,7 +202,9 @@ extension RectangleCardView {
         genre: movieOne.detail.genres,
         popularity: movieOne.popularity,
         releaseYear: movieOne.releaseYear,
-        description: movieOne.detail.description
+        description: movieOne.detail.description,
+        width: 150,
+        height: 300
     )
     .padding(.horizontal, 130)
 }

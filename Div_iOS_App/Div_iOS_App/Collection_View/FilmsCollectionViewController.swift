@@ -59,7 +59,9 @@ class FilmsCollectionView: UICollectionViewController {
                 genre: movieOne.detail.genres,
                 popularity: movieOne.popularity,
                 releaseYear: movieOne.releaseYear,
-                description: movieOne.detail.description
+                description: movieOne.detail.description,
+                width: view.bounds.width,
+                height: view.bounds.height
             )
 
             

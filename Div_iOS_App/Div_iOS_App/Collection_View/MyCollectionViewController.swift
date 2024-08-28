@@ -56,19 +56,8 @@ private let reuseIdentifier = "Cell"
 //    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 //        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
 //        cell.clipsToBounds = true
-//        cell.contentConfiguration = UIHostingConfiguration(content: {
-//            RectangleCardView(
-//                cardDisplay: .wide,
-//                cardTextPosition: .rightside,
-//                title: "Hledá se Nemo",
-//                imageUrl: "https://picsum.photos/id/237/200/300",
-//                genre: nil,
-//                popularity: 4.5,
-//                releaseYear: "2005",
-//                description: nil
-//            )
-//        }
-//        )
+//        cell.backgroundColor = .orange
+//
 //        return cell
 //    }
 //}
@@ -98,7 +87,6 @@ private let reuseIdentifier = "Cell"
 //#Preview {
 //    MyCollectionViewController()
 //}
-
 
 import UIKit
 
@@ -174,20 +162,23 @@ class MyCollectionViewController: UIViewController {
 extension MyCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-           cell.clipsToBounds = true
-           cell.contentConfiguration = UIHostingConfiguration(content: {
-               RectangleCardView(
-                   cardDisplay: .classic,
-                   cardTextPosition: .rightside,
-                   title: "Hledá se Nemo",
-                   imageUrl: "https://fastly.picsum.photos/id/913/200/300.jpg?hmac=DjpzGA27POHBn03vW7UxM5gI9phMxuAZ4hSKcRfJD9Y",
-                   genre: nil,
-                   popularity: 4.5,
-                   releaseYear: "2005",
-                   description: nil
-               )
-           }
-           )
+        cell.backgroundColor = .orange
+//           cell.clipsToBounds = true
+//           cell.contentConfiguration = UIHostingConfiguration(content: {
+//               RectangleCardView(
+//                   cardDisplay: .classic,
+//                   cardTextPosition: .rightside,
+//                   title: "Hledá se Nemo",
+//                   imageUrl: "https://fastly.picsum.photos/id/913/200/300.jpg?hmac=DjpzGA27POHBn03vW7UxM5gI9phMxuAZ4hSKcRfJD9Y",
+//                   genre: nil,
+//                   popularity: 4.5,
+//                   releaseYear: "2005",
+//                   description: nil,
+//                   width: 150,
+//                   height: 300
+//               )
+//           }
+//           )
            return cell
        }
 
